@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Hub | ADHD-Friendly Tools</title>
+    <meta name="description" content="A minimalist, accessible toolkit and resource hub designed for ADHD minds.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="app-header">
+        <div class="logo">
+            <i data-lucide="zap"></i>
+            <span>Focus Hub</span>
+        </div>
+        <nav class="main-nav">
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle Dark Mode">
+                <i data-lucide="moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="app-container">
+        
+        <!-- Sidebar: Park It Pad -->
+        <aside class="sidebar park-it-pad">
+            <div class="sidebar-header">
+                <h3>Park It Pad</h3>
+                <p>Dump distracting thoughts here.</p>
+            </div>
+            <div class="input-group">
+                <input type="text" id="park-it-input" placeholder="Type a thought & press Enter..." />
+            </div>
+            <div id="sticky-notes-container" class="sticky-notes-container">
+                <!-- Sticky notes will be injected here -->
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Hero / Intro -->
+            <section class="hero-section">
+                <h1>Your low-clutter toolkit.</h1>
+                <p>Find your flow, regulate overwhelm, and keep distractions at bay.</p>
+            </section>
+
+            <!-- Facts Section -->
+            <section class="facts-section">
+                <h2>ADHD Quick Facts</h2>
+                <div class="facts-grid">
+                    <div class="fact-card">
+                        <i data-lucide="brain"></i>
+                        <p><strong>Executive Dysfunction:</strong> It's not laziness. It's an impairment in the brain's management system.</p>
+                    </div>
+                    <div class="fact-card">
+                        <i data-lucide="zap"></i>
+                        <p><strong>Hyperfocus:</strong> When engaged, individuals with ADHD can experience intense, prolonged concentration.</p>
+                    </div>
+                    <div class="fact-card">
+                        <i data-lucide="battery-charging"></i>
+                        <p><strong>Dopamine Seeking:</strong> The ADHD brain actively seeks stimulation to reach baseline dopamine levels.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resource Library & Body Doubling -->
+            <section class="resources-hub-section">
+                <div class="resource-library">
+                    <h2>Resource Library</h2>
+                    <ul class="resource-links">
+                        <li><a href="#"><i data-lucide="file-text"></i> Daily Planner Template</a></li>
+                        <li><a href="#"><i data-lucide="check-square"></i> Routine Checklist</a></li>
+                        <li><a href="#"><i data-lucide="headphones"></i> Focus Playlist (Spotify)</a></li>
+                        <li><a href="#"><i data-lucide="monitor"></i> App Blockers Guide</a></li>
+                    </ul>
+                </div>
+
+                <div class="body-doubling">
+                    <h2>Body Doubling Hub</h2>
+                    <p>Co-work alongside others to boost accountability.</p>
+                    <div class="video-container">
+                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/jfKfPfyJRdk" title="Study with Me" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stim Sandbox -->
+            <section class="stim-sandbox-section">
+                <div class="widget-header">
+                    <h2>Sensory Sandbox</h2>
+                    <i data-lucide="grid"></i>
+                </div>
+                <p>Digital pop-it grid. Click to pop, click again to unpop.</p>
+                <div class="pop-it-grid" id="pop-it-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Widgets Grid -->
+            <section class="widgets-grid">
+                
+                <!-- Flow State Timer -->
+                <article class="widget timer-widget" id="flow-timer">
+                    <div class="widget-header">
+                        <h2>Flow State Timer</h2>
+                        <i data-lucide="timer"></i>
+                    </div>
+                    <div class="timer-visualizer">
+                        <div class="timer-circle">
+                            <span id="time-display">25:00</span>
+                        </div>
+                    </div>
+                    <div class="timer-controls">
+                        <button id="timer-start" class="btn primary">Start Flow</button>
+                        <button id="timer-pause" class="btn secondary">Pause</button>
+                    </div>
+                </article>
+
+                <!-- Visual Breath Pacer -->
+                <article class="widget breath-widget" id="breath-pacer">
+                    <div class="widget-header">
+                        <h2>Visual Breath Pacer</h2>
+                        <i data-lucide="wind"></i>
+                    </div>
+                    <div class="breath-visualizer">
+                        <div class="breath-circle" id="breath-circle"></div>
+                    </div>
+                    <p id="breath-instruction">Click to start breathing exercise</p>
+                    <button id="breath-toggle" class="btn secondary">Start</button>
+                </article>
+
+                <!-- Task Breakdown -->
+                <article class="widget task-widget">
+                    <div class="widget-header">
+                        <h2>Task Breakdown</h2>
+                        <i data-lucide="list-tree"></i>
+                    </div>
+                    <p>Too overwhelming? Let's split it up.</p>
+                    <div class="input-group">
+                        <input type="text" id="big-task-input" placeholder="e.g., 'Clean the house'" />
+                        <button id="breakdown-btn" class="btn primary">Split</button>
+                    </div>
+                    <ul id="micro-tasks-list" class="micro-tasks">
+                        <!-- Micro tasks will appear here -->
+                    </ul>
+                </article>
+
+                <!-- Decision Roulette -->
+                <article class="widget roulette-widget">
+                    <div class="widget-header">
+                        <h2>Decision Roulette</h2>
+                        <i data-lucide="dices"></i>
+                    </div>
+                    <p>Stuck in paralysis? Spin the wheel.</p>
+                    <div class="input-group">
+                        <input type="text" id="roulette-option-input" placeholder="Add an option..." />
+                        <button id="add-roulette-option" class="btn secondary">Add</button>
+                    </div>
+                    <div class="roulette-options" id="roulette-options">
+                        <span class="badge">Do homework</span>
+                        <span class="badge">Play games</span>
+                    </div>
+                    <button id="spin-btn" class="btn primary">Spin!</button>
+                    <div id="roulette-result" class="roulette-result"></div>
+                </article>
+
+            </section>
+
+            <!-- Dopamine Menu -->
+            <section class="dopamine-section">
+                <h2>Dopamine Menu</h2>
+                <p>Quick hits of healthy brain boosts.</p>
+                <div class="dopamine-cards" id="dopamine-menu">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
