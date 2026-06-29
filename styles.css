@@ -3,31 +3,32 @@
    ========================================= */
 
 :root {
-    /* Color Palette - Light Mode */
-    --bg-primary: #f8fafc;
-    --bg-secondary: #ffffff;
-    --bg-tertiary: #f1f5f9;
+    /* Color Palette - Cozy Mode (Default Light Mode Replacement) */
+    --bg-primary: #2C221E; /* Deep warm charcoal/espresso */
+    --bg-secondary: #3A2E28;
+    --bg-tertiary: #4A3C34;
     
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --text-muted: #94a3b8;
+    --text-primary: #F4EBD0; /* Warm Sand */
+    --text-secondary: #D4C5A5;
+    --text-muted: #A89B82;
     
-    --accent-primary: #3b82f6;
-    --accent-primary-hover: #2563eb;
-    --accent-secondary: #10b981;
-    --accent-warning: #f59e0b;
-    --accent-danger: #ef4444;
+    --accent-primary: #CC5500; /* Burnt Orange */
+    --accent-primary-hover: #E66A14;
+    --accent-secondary: #A04000;
+    --accent-warning: #D98844;
+    --accent-danger: #C0392B;
 
-    --border-color: #e2e8f0;
+    --border-color: #5C4A40;
+    --glow-primary: rgba(204, 85, 0, 0.4);
 
-    /* Shadows & Radii for Premium Feel */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    /* Shadows & Radii */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4);
     
     --radius-sm: 0.375rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 1rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1.5rem;
     --radius-full: 9999px;
 
     /* Typography */
@@ -39,19 +40,28 @@
 }
 
 [data-theme="dark"] {
-    /* Color Palette - Dark Mode */
-    --bg-primary: #0f172a;
-    --bg-secondary: #1e293b;
-    --bg-tertiary: #334155;
+    /* Color Palette - Neon Dark Mode ("Dopamine Vibe") */
+    --bg-primary: #1E1E1E; /* Deep Charcoal */
+    --bg-secondary: #2A2A2A;
+    --bg-tertiary: #333333;
     
-    --text-primary: #f8fafc;
-    --text-secondary: #cbd5e1;
-    --text-muted: #64748b;
+    --text-primary: #EAEAEA; /* Soft Off-White */
+    --text-secondary: #B0B0B0;
+    --text-muted: #808080;
     
-    --border-color: #334155;
+    --accent-primary: #00E5FF; /* Electric Cyan */
+    --accent-primary-hover: #00B8CC;
+    --accent-secondary: #B000FF; /* Cyber Purple */
+    --accent-warning: #FFEA00;
+    --accent-danger: #FF0055;
 
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+    --border-color: #444444;
+    --glow-primary: rgba(0, 229, 255, 0.6);
+    --glow-secondary: rgba(176, 0, 255, 0.6);
+
+    --shadow-sm: 0 0 10px var(--glow-primary);
+    --shadow-md: 0 0 20px var(--glow-primary);
+    --shadow-lg: 0 0 30px var(--glow-primary);
 }
 
 /* =========================================
@@ -112,22 +122,29 @@ a:hover {
 
 .btn.primary {
     background-color: var(--accent-primary);
-    color: #ffffff;
-    box-shadow: var(--shadow-sm);
+    color: var(--bg-primary);
+    box-shadow: 0 0 10px var(--glow-primary);
+    border: 1px solid var(--accent-primary);
+    font-weight: 600;
 }
 
 .btn.primary:hover {
-    background-color: var(--accent-primary-hover);
-    box-shadow: var(--shadow-md);
+    background-color: transparent;
+    color: var(--accent-primary);
+    box-shadow: 0 0 20px var(--glow-primary), inset 0 0 10px var(--glow-primary);
 }
 
 .btn.secondary {
-    background-color: var(--bg-tertiary);
+    background-color: transparent;
     color: var(--text-primary);
+    border: 1px solid var(--border-color);
 }
 
 .btn.secondary:hover {
-    background-color: var(--border-color);
+    background-color: var(--bg-tertiary);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    box-shadow: 0 0 15px var(--glow-primary);
 }
 
 .icon-btn {
@@ -403,9 +420,14 @@ input[type="text"]:focus {
     height: 40px;
     border-radius: 50%;
     background: radial-gradient(circle at 30% 30%, var(--bg-tertiary), var(--border-color));
-    box-shadow: inset -2px -2px 5px rgba(0,0,0,0.1), 2px 2px 5px rgba(0,0,0,0.1);
+    box-shadow: inset -2px -2px 5px rgba(0,0,0,0.5), 2px 2px 5px rgba(0,0,0,0.5);
     cursor: pointer;
     transition: transform 0.1s, box-shadow 0.1s, background 0.1s;
+}
+
+.pop-it-bubble:hover {
+    box-shadow: inset -2px -2px 5px rgba(0,0,0,0.5), 0 0 10px var(--glow-primary);
+    border: 1px solid var(--accent-primary);
 }
 
 .pop-it-bubble:active {
@@ -413,8 +435,9 @@ input[type="text"]:focus {
 }
 
 .pop-it-bubble.popped {
-    background: radial-gradient(circle at 70% 70%, var(--bg-tertiary), var(--border-color));
-    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.2);
+    background: radial-gradient(circle at 70% 70%, var(--accent-secondary), var(--bg-tertiary));
+    box-shadow: inset 2px 2px 10px rgba(0,0,0,0.8), 0 0 15px var(--glow-secondary);
+    border: 1px solid var(--accent-secondary);
     transform: scale(0.95);
 }
 
@@ -432,12 +455,13 @@ input[type="text"]:focus {
     padding: 1.5rem;
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--border-color);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
 }
 
 .widget:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-md);
+    border-color: var(--accent-primary);
 }
 
 .widget-header {
@@ -472,8 +496,8 @@ input[type="text"]:focus {
     align-items: center;
     justify-content: center;
     position: relative;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
-    transition: background 1s linear;
+    box-shadow: 0 0 20px var(--glow-primary);
+    transition: background 1s linear, box-shadow var(--transition-fast);
 }
 
 .timer-circle::before {
@@ -483,6 +507,7 @@ input[type="text"]:focus {
     height: 130px;
     background-color: var(--bg-secondary);
     border-radius: 50%;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
 }
 
 #time-display {
@@ -514,17 +539,20 @@ input[type="text"]:focus {
     background-color: var(--accent-secondary);
     border-radius: 50%;
     opacity: 0.8;
-    transition: transform 4s ease-in-out, background-color 4s ease-in-out;
+    box-shadow: 0 0 20px var(--glow-secondary);
+    transition: transform 4s ease-in-out, background-color 4s ease-in-out, box-shadow 4s ease-in-out;
 }
 
 .breath-circle.inhale {
     transform: scale(3);
     background-color: var(--accent-primary);
+    box-shadow: 0 0 40px var(--glow-primary);
 }
 
 .breath-circle.exhale {
     transform: scale(1);
     background-color: var(--accent-secondary);
+    box-shadow: 0 0 20px var(--glow-secondary);
 }
 
 #breath-instruction {
